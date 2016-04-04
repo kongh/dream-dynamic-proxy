@@ -9,7 +9,8 @@ import javassist.util.proxy.ProxyObject;
 public class JavassistTest {
 
     public static void main(String[] args) throws IllegalAccessException, InstantiationException {
-        JavassitInterceptor interceptor = new JavassitInterceptor();
+        RealSubject rs = new RealSubject();
+        JavassitInterceptor interceptor = new JavassitInterceptor(rs);
         ProxyFactory factory = new ProxyFactory();
         factory.setInterfaces(RealSubject.class.getInterfaces());
         Class<?> proxyClass = factory.createClass();

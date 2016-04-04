@@ -9,9 +9,16 @@ import java.lang.reflect.Method;
  */
 public class JavassitInterceptor implements MethodHandler {
 
+    //真实主题
+    private Object subject;
+
+    public JavassitInterceptor(Object subject) {
+        this.subject = subject;
+    }
+
     public Object invoke(Object self, Method thisMethod, Method proceed, Object[] args) throws Throwable {
         System.out.println(" do other thing ... javassit.");
-        return self;
+        return thisMethod.invoke(subject,args);
     }
 
 }
